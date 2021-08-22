@@ -64,13 +64,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // // apply movement
-    void ApplyMovement(Vector2 Direction, float Amount)
+    void ApplyMovement(Vector2 Direction, float Amount, float Delta = 1)
     {
-        // apply input to rigid body
-        RigidBody.velocity += Direction * Amount;
-        RigidBody.velocity = Vector2.ClampMagnitude(RigidBody.velocity, MaxSpeed);
-
-        // RigidBody.velocity = new Vector2((Direction.x * Delta), (Direction.y * Delta));
+        RigidBody.MovePosition(RigidBody.position + Vector2.ClampMagnitude(RigidBody.velocity + Direction * Amount, MaxSpeed) * Time.fixedDeltaTime);
     }
 
     // // apply friction
