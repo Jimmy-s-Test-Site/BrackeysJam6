@@ -23,6 +23,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 7008c27f67635b1458957a61af1fa356, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_8e1a13dbfc71495b860744c0723cb462_Texture_1:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -36,16 +40,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_252640d0d04849c2b4ffc387892a3543: -0.57
     - Vector1_2bf25bb5f5e14c0dab43b28c081a3130: 1.02
-    - Vector1_9670d0b998754381a3dac29df750e2ae: 3
+    - Vector1_9670d0b998754381a3dac29df750e2ae: 4
+    - Vector1_d79c0e3e83be459fa1447a05dc98621c: 0.48
     - Vector1_e594719153484033acf1ef7ef4108bf7: 5
-    - Vector1_e66c752944a24f408f5bbf73cc9793bd: 0.06
-    - Vector1_e66c752944a24f408f5bbf73cc9793bd_1: 0.9
+    - Vector1_e66c752944a24f408f5bbf73cc9793bd: 0.915
+    - Vector1_e66c752944a24f408f5bbf73cc9793bd_1: 0.85
     - _Appearness: 1
-    - _NoiseTilingX: 4
+    - _NoiseTilingX: 1.2
     - _NoiseTilingY: 1
     - _RainbowWaves: 5
     m_Colors:
     - Vector2_addac58cf96c424d855f646b0f517c36: {r: 0.12, g: 0.21, b: 0, a: 0}
-    - Vector2_addac58cf96c424d855f646b0f517c36_1: {r: 0, g: 0.4, b: 0, a: 0}
+    - Vector2_addac58cf96c424d855f646b0f517c36_1: {r: 0, g: 0.39, b: 0, a: 0}
   m_BuildTextureStacks: []
