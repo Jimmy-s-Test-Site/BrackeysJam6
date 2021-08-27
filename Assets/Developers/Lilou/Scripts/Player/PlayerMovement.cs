@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float WalkFriction = 1.25f;
 
     // // input
-    private Vector2 InputAxis;
+    private Vector2 MovementInput;
+    private Vector2 RotationInput;
 
     // methods
 
@@ -42,27 +43,24 @@ public class PlayerMovement : MonoBehaviour
     // // update input
     void UpdateInput()
     {
-        // update input axis
-        InputAxis = GetInputAxis();
+        // update movement input
+        MovementInput = new Vector2(-Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+        // update rotation input
+        RotationInput = Input.mousePosition;
     }
 
     // // update movement
     void UpdateMovement()
     {
-        if (InputAxis == Vector2.zero)
+        if (MovementInput == Vector2.zero)
         {
             ApplyFriction(WalkFriction);
         }
         else
         {
-            ApplyMovement(InputAxis, WalkAcceleration);
+            ApplyMovement(MovementInput, WalkAcceleration);
         }
-    }
-
-    // // get input axis
-    Vector2 GetInputAxis()
-    {
-        return new Vector2(-Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
     }
 
     // // apply movement
@@ -84,9 +82,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // // update rotation
     void UpdateRotation()
     {
-        Vector3 Distance = Input.mousePosition - PlayerCamera.WorldToScreenPoint(transform.position); ;
+        Vector3 Distance = (Vector3)RotationInput - PlayerCamera.WorldToScreenPoint(transform.position); ;
         Vector3 MousePos = new Vector3(Distance.x, Distance.y);
 
         transform.rotation = Quaternion.Inverse(Quaternion.LookRotation(Vector3.forward, MousePos));
