@@ -6,16 +6,17 @@ public class PlayerMovement : MonoBehaviour
 {
     // properties
 
-    // // physics
-    public Rigidbody2D RigidBody;
-    
-    // // input
-    private Vector2 InputAxis;
+    // references
+    [SerializeField] public Camera PlayerCamera;
+    [SerializeField] public Rigidbody2D RigidBody;
 
     // // movement
-    public float MaxSpeed;
-    public float Acceleration;
-    public float Friction;
+    [SerializeField] public float WalkSpeedMax = 10.0f;
+    [SerializeField] public float WalkAcceleration = 500.0f;
+    [SerializeField] public float WalkFriction = 1.25f;
+
+    // // input
+    private Vector2 InputAxis;
 
     // methods
 
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateMovement();
+        UpdateRotation();
     }
 
     // // update input
@@ -49,11 +51,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (InputAxis == Vector2.zero)
         {
-            ApplyFriction(Friction);
+            ApplyFriction(WalkFriction);
         }
         else
         {
-            ApplyMovement(InputAxis, Acceleration);
+            ApplyMovement(InputAxis, WalkAcceleration);
         }
     }
 
@@ -66,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     // // apply movement
     void ApplyMovement(Vector2 Direction, float Amount, float Delta = 1)
     {
-        RigidBody.MovePosition(RigidBody.position + Vector2.ClampMagnitude(RigidBody.velocity + Direction * Amount, MaxSpeed) * Time.fixedDeltaTime);
+        RigidBody.MovePosition(RigidBody.position + Vector2.ClampMagnitude(RigidBody.velocity + Direction * Amount, WalkSpeedMax) * Time.fixedDeltaTime);
     }
 
     // // apply friction
@@ -80,5 +82,13 @@ public class PlayerMovement : MonoBehaviour
         {
             RigidBody.velocity = Vector2.zero;
         }
+    }
+
+    void UpdateRotation()
+    {
+        Vector3 Distance = Input.mousePosition - PlayerCamera.WorldToScreenPoint(transform.position); ;
+        Vector3 MousePos = new Vector3(Distance.x, Distance.y);
+
+        transform.rotation = Quaternion.Inverse(Quaternion.LookRotation(Vector3.forward, MousePos));
     }
 }
