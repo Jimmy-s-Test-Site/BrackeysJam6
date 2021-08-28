@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class BasePlayer : MonoBehaviour
 {
     // properties
 
@@ -47,7 +47,8 @@ public class PlayerMovement : MonoBehaviour
         MovementInput = new Vector2(-Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
         // update rotation input
-        RotationInput = Input.mousePosition;
+        RotationInput = PlayerCamera.ScreenToWorldPoint(Input.mousePosition);
+        // RotationInput = Input.mousePosition;
     }
 
     // // update movement
@@ -85,9 +86,7 @@ public class PlayerMovement : MonoBehaviour
     // // update rotation
     void UpdateRotation()
     {
-        Vector3 Distance = (Vector3)RotationInput - PlayerCamera.WorldToScreenPoint(transform.position); ;
-        Vector3 MousePos = new Vector3(Distance.x, Distance.y);
-
-        transform.rotation = Quaternion.Inverse(Quaternion.LookRotation(Vector3.forward, MousePos));
+        Vector2 LookVector = RotationInput - RigidBody.position;
+        RigidBody.rotation = Mathf.Atan2(LookVector.y, LookVector.x) * Mathf.Rad2Deg - 90f;
     }
 }
