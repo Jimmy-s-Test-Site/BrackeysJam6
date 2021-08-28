@@ -37,6 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_336e37ca562549dfba9fe86bdb65adf1: 0.5
+    - Vector1_3af2064b463b40c8ba3ef04fe48678fe: 0
     - Vector1_a2abff9391eb4bb0ba72381c78bbc736: 163
     - Vector1_b0718767249847e8a39a8e34fa8ff83e: 0.72
     - _WaveHeight: 0.74
