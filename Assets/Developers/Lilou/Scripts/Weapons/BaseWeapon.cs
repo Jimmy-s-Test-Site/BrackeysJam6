@@ -6,11 +6,10 @@ public class BaseWeapon : MonoBehaviour
 {
     // properties
 
-    [SerializeField] public BasePlayer Owner;
     [SerializeField] public Transform FirePoint;
     [SerializeField] public BaseBulletBehaviour BulletBehaviour;
 
-    [SerializeField] public int FireRate = 720;
+    [SerializeField] public int FireRate = 600;
     [SerializeField] public int BulletSpeed = 20;
     [SerializeField] public int BulletDamage = 100;
     [SerializeField] public bool Automatic = true;

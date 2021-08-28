@@ -20,7 +20,8 @@ public class BaseBulletBehaviourPhysics : BaseBulletBehaviour
     // // fire start
     public override void FireStart(BaseWeapon InCaller, Transform InTransform)
     {
-        GameObject Bullet = Instantiate(BulletPrefab, InTransform);
+        Vector3 SpawnLocation = InTransform.position + (InTransform.up * (BulletPrefab.transform.lossyScale.y / 2));
+        GameObject Bullet = Instantiate(BulletPrefab, SpawnLocation, InTransform.rotation);
         Rigidbody2D BulletRigidBody = Bullet.GetComponent<Rigidbody2D>();
         BulletRigidBody.AddForce(InTransform.up * InCaller.BulletSpeed, ForceMode2D.Impulse);
     }
